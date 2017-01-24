@@ -21,9 +21,9 @@
 	<key>CFBundleShortVersionString</key>
 	<string>0.1</string>
 	<key>UpdateFeedURL</key>
-	<string>http://friedrichalthausen.de/</string>
+	<string>https://github.com/FAlthausen/GlyphsApp/tree/master/Plugins/LigatureCaret</string>
 	<key>productPageURL</key>
-	<string>http://friedrichalthausen.de/friedrich-althausen/</string>
+	<string>https://github.com/FAlthausen/GlyphsApp/tree/master/Plugins/LigatureCaret</string>
 	<key>productReleaseNotes</key>
 	<string>Initial Release</string>
 	<key>NSHumanReadableCopyright</key>

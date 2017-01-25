@@ -1,10 +1,8 @@
 # About
 
-@FAlthausen ’s Public GlyphsApp Scripts and Plugins.
-To use with the [Glyphs font editor](http://glyphsapp.com/).
+**Ligature Caret:** plugin to use in the [Glyphs font editor](http://glyphsapp.com/).
 
-## Plugins
-* **Ligature Caret:** Select a "caret" named anchor to show the cursor position in ligatures as a vertical line. Be aware that most software doesn’t take note of the fonts italic angle. 
+Select a "caret" named anchor to show the cursor position in ligatures as a vertical line. Be aware that most software doesn’t take note of the fonts italic angle. 
 
 
 ## Copyright

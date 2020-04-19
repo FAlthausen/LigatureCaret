@@ -25,7 +25,7 @@ class LigatureCaret(ReporterPlugin):
 			'en': 'Ligature Caret',
 			'de': 'Einfügemarken in Ligaturen',
 			'fr': 'les curseurs dans les ligatures',
-			'es': 'los cursores en las ligaturas',
+			'es': 'cursores en ligaturas',
 		})
 
 	@objc.python_method
@@ -78,7 +78,7 @@ class LigatureCaret(ReporterPlugin):
 	@objc.python_method
 	def preview(self, layer):
 		NSColor.colorWithCalibratedRed_green_blue_alpha_( 0.89, 0.81, 0.37, 0.8 ).set()
-		self.drawCaret(layer)
+		self.drawCaret(layer, selectionCounts=True)
 
 	@objc.python_method
 	def __file__(self):

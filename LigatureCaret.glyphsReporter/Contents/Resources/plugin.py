@@ -13,9 +13,11 @@ from __future__ import division, print_function, unicode_literals
 ###########################################################################################################
 
 import objc
-from GlyphsApp import *
-from GlyphsApp.plugins import *
+from GlyphsApp import Glyphs
+from GlyphsApp.plugins import ReporterPlugin
 from math import tan, radians
+from AppKit import NSColor, NSBezierPath
+
 
 class LigatureCaret(ReporterPlugin):
 
@@ -29,10 +31,10 @@ class LigatureCaret(ReporterPlugin):
 		})
 
 	@objc.python_method
-	def drawCaret( self, layer, selectionCounts=False ):
+	def drawCaret(self, layer, selectionCounts=False):
 		try:
 			master = layer.master
-			strokeWidth = 1.5/self.getScale()
+			strokeWidth = 1.5 / self.getScale()
 			for line in layer.anchors:
 				if "caret" in line.name and (line.selected or not selectionCounts):
 					# draw upright caret:
@@ -45,7 +47,7 @@ class LigatureCaret(ReporterPlugin):
 					uprightCaret.lineToPoint_((x2, y2))
 					uprightCaret.setLineWidth_(strokeWidth)
 					angle = master.italicAngle
-					
+
 					if angle != 0:
 						# also draw italic slant caret:
 						bottomLeftShift = tan(radians(angle)) * master.descender
@@ -57,27 +59,27 @@ class LigatureCaret(ReporterPlugin):
 						italicCaret.lineToPoint_((x2Ital, y2))
 						italicCaret.setLineWidth_(strokeWidth)
 						italicCaret.stroke()
-						
+
 						# dash upright caret if italic:
-						dashPatternValues = (1.0,3.0)
-						dashPattern = tuple(3*v/self.getScale() for v in dashPatternValues)
+						dashPatternValues = (1.0, 3.0)
+						dashPattern = tuple(3 * v / self.getScale() for v in dashPatternValues)
 						uprightCaret.setLineDash_count_phase_(dashPattern, len(dashPattern), 0)
-						
+
 					uprightCaret.stroke()
-					
+
 		except Exception as e:
 			import traceback
 			print(traceback.format_exc())
-			self.logToConsole( "drawCaret: %s" % str(e) )
-			
+			self.logToConsole("drawCaret: %s" % str(e))
+
 	@objc.python_method
 	def background(self, layer):
-		NSColor.colorWithCalibratedRed_green_blue_alpha_( 0.79, 0.71, 0.27, 0.8 ).set()
+		NSColor.colorWithCalibratedRed_green_blue_alpha_(0.79, 0.71, 0.27, 0.8).set()
 		self.drawCaret(layer)
 
 	@objc.python_method
 	def preview(self, layer):
-		NSColor.colorWithCalibratedRed_green_blue_alpha_( 0.89, 0.81, 0.37, 0.8 ).set()
+		NSColor.colorWithCalibratedRed_green_blue_alpha_(0.89, 0.81, 0.37, 0.8).set()
 		self.drawCaret(layer, selectionCounts=True)
 
 	@objc.python_method
